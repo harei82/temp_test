@@ -1,0 +1,922 @@
+#################################################################################
+resource "aws_security_group" "Ajuba-Web-UAT" {
+  name   = "ajuba-web-uat-sg"
+  vpc_id = module.hsenid_uat-vpc.vpc_id
+/*
+  ingress {
+  description = "Security Group for Ajuba-Web-pre-prod"
+  from_port   = 80
+  to_port     = 80
+  protocol    = "tcp"
+  security_groups = ["sg-0b2730b64f20e1879"]
+  }*/
+
+  ingress {
+  description = "hSenid On-Prem subnet"
+  from_port   = 22
+  to_port     = 22
+  protocol    = "tcp"
+  cidr_blocks = ["192.168.20.0/28"]
+  }
+
+  ingress {
+  description = "hSenid On-Prem subnet"
+  from_port   = 8080
+  to_port     = 8080
+  protocol    = "tcp"
+  cidr_blocks = ["192.168.20.0/28"]
+  }
+
+  ingress {
+  description = "hSenid On-Prem subnet"
+  from_port   = 443
+  to_port     = 443
+  protocol    = "tcp"
+  cidr_blocks = ["192.168.20.0/28"]
+  }
+
+  ingress {
+  description = "temp_bas"
+  from_port   = 22
+  to_port     = 22
+  protocol    = "tcp"
+  cidr_blocks = ["10.241.80.190/32"]
+  }
+
+  ingress {
+  description = "ajuba-app-uat-sg"
+  from_port   = 22
+  to_port     = 22
+  protocol    = "tcp"
+  security_groups = ["sg-0ae8187303f944c0b"]
+  }
+
+  ingress {
+  description = "ajuba-app-uat-sg"
+  from_port   = 80
+  to_port     = 80
+  protocol    = "tcp"
+  security_groups = ["sg-0ae8187303f944c0b"]
+  }
+
+  ingress {
+  description = "ajuba-app-uat-sg"
+  from_port   = 443
+  to_port     = 443
+  protocol    = "tcp"
+  security_groups = ["sg-0ae8187303f944c0b"]
+  }
+
+  ingress {
+  description = "ajuba-app-uat-sg"
+  from_port   = 3000
+  to_port     = 3000
+  protocol    = "tcp"
+  security_groups = ["sg-0ae8187303f944c0b"]
+  }
+
+  ingress {
+  description = "ajuba-app-uat-sg"
+  from_port   = 8080
+  to_port     = 8080
+  protocol    = "tcp"
+  security_groups = ["sg-0ae8187303f944c0b"]
+  }
+
+  ingress {
+  description = "ajuba-app-uat-sg"
+  from_port   = 8443
+  to_port     = 8443
+  protocol    = "tcp"
+  security_groups = ["sg-0ae8187303f944c0b"]
+  }
+
+  ingress {
+  description = "ajuba-app-uat-sg"
+  from_port   = 9100
+  to_port     = 9100
+  protocol    = "tcp"
+  security_groups = ["sg-0ae8187303f944c0b"]
+  }
+
+  ingress {
+  description = "ajuba-app-uat-sg"
+  from_port   = 9116
+  to_port     = 9116
+  protocol    = "tcp"
+  security_groups = ["sg-0ae8187303f944c0b"]
+  }
+
+  ingress {
+  description = "ajuba-app-uat-sg"
+  from_port   = 13457
+  to_port     = 13457
+  protocol    = "tcp"
+  security_groups = ["sg-0ae8187303f944c0b"]
+  }
+
+  ingress {
+  description = "ajuba-db-uat-sg"
+  from_port   = 22
+  to_port     = 22
+  protocol    = "tcp"
+  security_groups = ["sg-05d028b5404bc2fb8"]
+  }
+
+  ingress {
+  description = "ajuba-db-uat-sg"
+  from_port   = 80
+  to_port     = 80
+  protocol    = "tcp"
+  security_groups = ["sg-05d028b5404bc2fb8"]
+  }
+
+  ingress {
+  description = "ajuba-db-uat-sg"
+  from_port   = 443
+  to_port     = 443
+  protocol    = "tcp"
+  security_groups = ["sg-05d028b5404bc2fb8"]
+  }
+
+  ingress {
+  description = "ajuba-db-uat-sg"
+  from_port   = 3000
+  to_port     = 3000
+  protocol    = "tcp"
+  security_groups = ["sg-05d028b5404bc2fb8"]
+  }
+
+  ingress {
+  description = "ajuba-db-uat-sg"
+  from_port   = 8080
+  to_port     = 8080
+  protocol    = "tcp"
+  security_groups = ["sg-05d028b5404bc2fb8"]
+  }
+
+  ingress {
+  description = "ajuba-db-uat-sg"
+  from_port   = 8443
+  to_port     = 8443
+  protocol    = "tcp"
+  security_groups = ["sg-05d028b5404bc2fb8"]
+  }
+
+  ingress {
+  description = "ajuba-db-uat-sg"
+  from_port   = 9100
+  to_port     = 9100
+  protocol    = "tcp"
+  security_groups = ["sg-05d028b5404bc2fb8"]
+  }
+
+  ingress {
+  description = "ajuba-db-uat-sg"
+  from_port   = 9116
+  to_port     = 9116
+  protocol    = "tcp"
+  security_groups = ["sg-05d028b5404bc2fb8"]
+  }
+
+  ingress {
+  description = "ajuba-db-uat-sg"
+  from_port   = 13457
+  to_port     = 13457
+  protocol    = "tcp"
+  security_groups = ["sg-05d028b5404bc2fb8"]
+  }
+
+  ingress {
+  description = "Self access for Ajuba-Web-UAT"
+  from_port   = 0
+  to_port     = 0
+  protocol    = "-1"
+  self = true
+  }
+
+  ingress {
+  description = "ajuba-dashdb-uat-sg"
+  from_port   = 22
+  to_port     = 22
+  protocol    = "tcp"
+  security_groups = ["sg-0109bbbc3cbd2debe"]
+  }
+
+  ingress {
+  description = "ajuba-dashdb-uat-sg"
+  from_port   = 80
+  to_port     = 80
+  protocol    = "tcp"
+  security_groups = ["sg-0109bbbc3cbd2debe"]
+  }
+
+  ingress {
+  description = "ajuba-dashdb-uat-sg"
+  from_port   = 443
+  to_port     = 443
+  protocol    = "tcp"
+  security_groups = ["sg-0109bbbc3cbd2debe"]
+  }
+
+  ingress {
+  description = "ajuba-dashdb-uat-sg"
+  from_port   = 3000
+  to_port     = 3000
+  protocol    = "tcp"
+  security_groups = ["sg-0109bbbc3cbd2debe"]
+  }
+
+  ingress {
+  description = "ajuba-dashdb-uat-sg"
+  from_port   = 8080
+  to_port     = 8080
+  protocol    = "tcp"
+  security_groups = ["sg-0109bbbc3cbd2debe"]
+  }
+
+  ingress {
+  description = "ajuba-dashdb-uat-sg"
+  from_port   = 8443
+  to_port     = 8443
+  protocol    = "tcp"
+  security_groups = ["sg-0109bbbc3cbd2debe"]
+  }
+
+  ingress {
+  description = "ajuba-dashdb-uat-sg"
+  from_port   = 9100
+  to_port     = 9100
+  protocol    = "tcp"
+  security_groups = ["sg-0109bbbc3cbd2debe"]
+  }
+
+  ingress {
+  description = "ajuba-dashdb-uat-sg"
+  from_port   = 9116
+  to_port     = 9116
+  protocol    = "tcp"
+  security_groups = ["sg-0109bbbc3cbd2debe"]
+  }
+
+  ingress {
+  description = "ajuba-dashdb-uat-sg"
+  from_port   = 13457
+  to_port     = 13457
+  protocol    = "tcp"
+  security_groups = ["sg-0109bbbc3cbd2debe"]
+  }
+
+  ingress {
+  description = "Self access for Ajuba-Web-UAT"
+  from_port   = 0
+  to_port     = 0
+  protocol    = "-1"
+  self = true
+  }
+
+  ingress {
+  description = "Self access for Ajuba-Web-UAT"
+  from_port   = 0
+  to_port     = 0
+  protocol    = "-1"
+  self = true
+  }
+
+  egress {
+  description = "Allow all"
+  from_port   = 0
+  to_port     = 0
+  protocol    = "-1"
+  cidr_blocks = ["0.0.0.0/0"]
+
+  }
+  tags = {
+  Name = "ajuba-web-uat-sg"
+  }
+}
+###########################################Ajuba-App-pre-prod#############################################################################
+resource "aws_security_group" "Ajuba-App-UAT" {
+  name   = "ajuba-app-uat-sg"
+  vpc_id = module.hsenid_uat-vpc.vpc_id
+
+  ingress {
+  description = "Allow Port 4004 within VPC"
+  from_port   = 4004
+  to_port     = 4004
+  protocol    = "tcp"
+  cidr_blocks = ["172.16.9.21/32", "172.16.9.22/32", "172.16.108.22/32", "202.65.247.182/32", "202.65.247.183/32", "202.65.244.185/32", "172.16.9.25/32", "172.27.5.42/32", "172.27.5.43/32", "172.27.5.47/32", "172.28.64.134/32", "172.28.64.135/32"]
+  }
+
+  ingress {
+  description = "Allow Port 6379"
+  from_port   = 22
+  to_port     = 22
+  protocol    = "tcp"
+  cidr_blocks = ["172.16.26.103/32", "172.16.26.104/32", "172.16.104.120/32"]
+  }
+
+  ingress {
+  description = "hSenid On-Prem subnet"
+  from_port   = 22
+  to_port     = 22
+  protocol    = "tcp"
+  cidr_blocks = ["192.168.20.0/28"]
+  }
+
+  ingress {
+  description = "hSenid On-Prem subnet"
+  from_port   = 8080
+  to_port     = 8080
+  protocol    = "tcp"
+  cidr_blocks = ["192.168.20.0/28"]
+  }
+
+ ingress {
+  description = "Onprem"
+  from_port   = 8081
+  to_port     = 8082
+  protocol    = "tcp"
+  cidr_blocks = ["172.16.9.0/27", "172.27.5.0/26", "172.16.108.22/32", "172.28.64.135/32"]
+  }
+
+  ingress {
+  description = "Onprem"
+  from_port   = 8081
+  to_port     = 8082
+  protocol    = "tcp"
+  cidr_blocks = ["10.241.64.36/32", "10.241.64.52/32"]
+  }
+
+  ingress {
+  description = "Onprem"
+  from_port   = 65097
+  to_port     = 65097
+  protocol    = "tcp"
+  cidr_blocks = ["172.16.9.0/27", "172.27.5.0/26", "172.16.108.22/32", "172.28.64.135/32"]
+  }
+
+  ingress {
+  description = "Onprem"
+  from_port   = 65097
+  to_port     = 65097
+  protocol    = "tcp"
+  cidr_blocks = ["10.241.64.36/32", "10.241.64.52/32"]
+  }
+
+  ingress {
+  description = "hSenid On-Prem subnet"
+  from_port   = 443
+  to_port     = 443
+  protocol    = "tcp"
+  cidr_blocks = ["192.168.20.0/28"]
+  }
+
+  ingress {
+  description = "temp_bas"
+  from_port   = 22
+  to_port     = 22
+  protocol    = "tcp"
+  cidr_blocks = ["10.241.80.190/32"]
+  }
+
+  ingress {
+    description = "Self access for ajuba-app-uat-sg"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    self        = true
+  }
+
+  ingress {
+  description = "ajuba-web-uat-sg"
+  from_port   = 22
+  to_port     = 22
+  protocol    = "tcp"
+  security_groups = ["sg-0dd3cf5f3a101c34c"]
+  }
+
+  ingress {
+  description = "ajuba-web-uat-sg"
+  from_port   = 4004
+  to_port     = 4004
+  protocol    = "tcp"
+  security_groups = ["sg-0dd3cf5f3a101c34c"]
+  }
+
+  ingress {
+  description = "ajuba-web-uat-sg"
+  from_port   = 9100
+  to_port     = 9100
+  protocol    = "tcp"
+  security_groups = ["sg-0dd3cf5f3a101c34c"]
+  }
+
+  ingress {
+  description = "ajuba-web-uat-sg"
+  from_port   = 9116
+  to_port     = 9116
+  protocol    = "tcp"
+  security_groups = ["sg-0dd3cf5f3a101c34c"]
+  }
+
+  ingress {
+  description = "ajuba-web-uat-sg"
+  from_port   = 6500
+  to_port     = 6500
+  protocol    = "tcp"
+  security_groups = ["sg-0dd3cf5f3a101c34c"]
+  }
+
+  ingress {
+  description = "ajuba-web-uat-sg"
+  from_port   = 6597
+  to_port     = 6597
+  protocol    = "tcp"
+  security_groups = ["sg-0dd3cf5f3a101c34c"]
+  }
+
+  ingress {
+  description = "ajuba-web-uat-sg"
+  from_port   = 65097
+  to_port     = 65097
+  protocol    = "tcp"
+  security_groups = ["sg-0dd3cf5f3a101c34c"]
+  }
+
+    ingress {
+  description = "ajuba-db-uat-sg"
+  from_port   = 22
+  to_port     = 22
+  protocol    = "tcp"
+  security_groups = ["sg-05d028b5404bc2fb8"]
+  }
+
+  ingress {
+  description = "ajuba-db-uat-sg"
+  from_port   = 4004
+  to_port     = 4004
+  protocol    = "tcp"
+  security_groups = ["sg-05d028b5404bc2fb8"]
+  }
+
+  ingress {
+  description = "ajuba-db-uat-sg"
+  from_port   = 9100
+  to_port     = 9100
+  protocol    = "tcp"
+  security_groups = ["sg-05d028b5404bc2fb8"]
+  }
+
+  ingress {
+  description = "ajuba-db-uat-sg"
+  from_port   = 9116
+  to_port     = 9116
+  protocol    = "tcp"
+  security_groups = ["sg-05d028b5404bc2fb8"]
+  }
+
+  ingress {
+  description = "ajuba-db-uat-sg"
+  from_port   = 6500
+  to_port     = 6500
+  protocol    = "tcp"
+  security_groups = ["sg-05d028b5404bc2fb8"]
+  }
+
+  ingress {
+  description = "ajuba-db-uat-sg"
+  from_port   = 6597
+  to_port     = 6597
+  protocol    = "tcp"
+  security_groups = ["sg-05d028b5404bc2fb8"]
+  }
+
+  ingress {
+  description = "ajuba-db-uat-sg"
+  from_port   = 65097
+  to_port     = 65097
+  protocol    = "tcp"
+  security_groups = ["sg-05d028b5404bc2fb8"]
+  }
+    ingress {
+  description = "ajuba-dashdb-uat-sg"
+  from_port   = 22
+  to_port     = 22
+  protocol    = "tcp"
+  security_groups = ["sg-0109bbbc3cbd2debe"]
+  }
+
+  ingress {
+  description = "ajuba-dashdb-uat-sg"
+  from_port   = 4004
+  to_port     = 4004
+  protocol    = "tcp"
+  security_groups = ["sg-0109bbbc3cbd2debe"]
+  }
+
+  ingress {
+  description = "ajuba-dashdb-uat-sg"
+  from_port   = 9100
+  to_port     = 9100
+  protocol    = "tcp"
+  security_groups = ["sg-0109bbbc3cbd2debe"]
+  }
+
+  ingress {
+  description = "ajuba-dashdb-uat-sg"
+  from_port   = 9116
+  to_port     = 9116
+  protocol    = "tcp"
+  security_groups = ["sg-0109bbbc3cbd2debe"]
+  }
+
+  ingress {
+  description = "ajuba-dashdb-uat-sg"
+  from_port   = 6500
+  to_port     = 6500
+  protocol    = "tcp"
+  security_groups = ["sg-0109bbbc3cbd2debe"]
+  }
+
+  ingress {
+  description = "ajuba-dashdb-uat-sg"
+  from_port   = 6597
+  to_port     = 6597
+  protocol    = "tcp"
+  security_groups = ["sg-0109bbbc3cbd2debe"]
+  }
+
+  ingress {
+  description = "ajuba-dashdb-uat-sg"
+  from_port   = 65097
+  to_port     = 65097
+  protocol    = "tcp"
+  security_groups = ["sg-0109bbbc3cbd2debe"]
+  }
+
+  egress {
+  description = "Allow all"
+  from_port   = 0
+  to_port     = 0
+  protocol    = "-1"
+  cidr_blocks = ["0.0.0.0/0"]
+
+  }
+  tags = {
+  Name = "ajuba-app-uat-sg"
+  }
+}
+################################################Ajuba-DB-Pre-Prod-SG###################################################################
+resource "aws_security_group" "ajuba-db-uat" {
+  name   = "ajuba-db-uat-sg"
+  vpc_id = module.hsenid_uat-vpc.vpc_id
+
+  ingress {
+  description = "hSenid On-Prem subnet"
+  from_port   = 22
+  to_port     = 22
+  protocol    = "tcp"
+  cidr_blocks = ["192.168.20.0/28"]
+  }
+
+  ingress {
+  description = "hSenid On-Prem subnet"
+  from_port   = 8080
+  to_port     = 8080
+  protocol    = "tcp"
+  cidr_blocks = ["192.168.20.0/28"]
+  }
+
+  ingress {
+  description = "hSenid On-Prem subnet"
+  from_port   = 443
+  to_port     = 443
+  protocol    = "tcp"
+  cidr_blocks = ["192.168.20.0/28"]
+  }
+
+  ingress {
+  description = "temp_bas"
+  from_port   = 22
+  to_port     = 22
+  protocol    = "tcp"
+  cidr_blocks = ["10.241.80.190/32"]
+  }
+
+  ingress {
+  description = "ajuba-web-uat-sg"
+  from_port   = 22
+  to_port     = 22
+  protocol    = "tcp"
+  security_groups = ["sg-0dd3cf5f3a101c34c"]
+  }
+
+  ingress {
+  description = "ajuba-web-uat-sg"
+  from_port   = 3306
+  to_port     = 3306
+  protocol    = "tcp"
+  security_groups = ["sg-0dd3cf5f3a101c34c"]
+  }
+
+  ingress {
+  description = "ajuba-web-uat-sg"
+  from_port   = 9090
+  to_port     = 9090
+  protocol    = "tcp"
+  security_groups = ["sg-0dd3cf5f3a101c34c"]
+  }
+
+  ingress {
+  description = "ajuba-web-uat-sg"
+  from_port   = 9100
+  to_port     = 9100
+  protocol    = "tcp"
+  security_groups = ["sg-0dd3cf5f3a101c34c"]
+  }
+
+  ingress {
+  description = "ajuba-web-uat-sg"
+  from_port   = 9116
+  to_port     = 9116
+  protocol    = "tcp"
+  security_groups = ["sg-0dd3cf5f3a101c34c"]
+  }
+
+  ingress {
+  description = "ajuba-app-uat-sg"
+  from_port   = 22
+  to_port     = 22
+  protocol    = "tcp"
+  security_groups = ["sg-0ae8187303f944c0b"]
+  }
+
+  ingress {
+  description = "ajuba-app-uat-sg"
+  from_port   = 3306
+  to_port     = 3306
+  protocol    = "tcp"
+  security_groups = ["sg-0ae8187303f944c0b"]
+  }
+
+  ingress {
+  description = "ajuba-app-uat-sg"
+  from_port   = 9090
+  to_port     = 9090
+  protocol    = "tcp"
+  security_groups = ["sg-0ae8187303f944c0b"]
+  }
+
+  ingress {
+  description = "ajuba-app-uat-sg"
+  from_port   = 9100
+  to_port     = 9100
+  protocol    = "tcp"
+  security_groups = ["sg-0ae8187303f944c0b"]
+  }
+
+  ingress {
+  description = "ajuba-app-uat-sg"
+  from_port   = 9116
+  to_port     = 9116
+  protocol    = "tcp"
+  security_groups = ["sg-0ae8187303f944c0b"]
+  }
+
+    ingress {
+  description = "ajuba-dashdb-uat-sg"
+  from_port   = 22
+  to_port     = 22
+  protocol    = "tcp"
+  security_groups = ["sg-0109bbbc3cbd2debe"]
+  }
+
+  ingress {
+  description = "ajuba-dashdb-uat-sg"
+  from_port   = 3306
+  to_port     = 3306
+  protocol    = "tcp"
+  security_groups = ["sg-0109bbbc3cbd2debe"]
+  }
+
+  ingress {
+  description = "ajuba-dashdb-uat-sg"
+  from_port   = 9090
+  to_port     = 9090
+  protocol    = "tcp"
+  security_groups = ["sg-0109bbbc3cbd2debe"]
+  }
+
+  ingress {
+  description = "ajuba-dashdb-uat-sg"
+  from_port   = 9100
+  to_port     = 9100
+  protocol    = "tcp"
+  security_groups = ["sg-0109bbbc3cbd2debe"]
+  }
+
+  ingress {
+  description = "ajuba-dashdb-uat-sg"
+  from_port   = 9116
+  to_port     = 9116
+  protocol    = "tcp"
+  security_groups = ["sg-0109bbbc3cbd2debe"]
+  }
+
+  ingress {
+    description = "Self access for ajuba-db-uat-sg"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    self        = true
+  }
+
+  egress {
+    description = "Allow all"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+    tags = {
+      Name = "ajuba-db-uat-sg"
+    }
+}
+  ################################################################################################################
+
+resource "aws_security_group" "Ajuba-Dashboard-DB-uat" {
+    name   = "ajuba-dashdb-uat-sg"
+    vpc_id = module.hsenid_uat-vpc.vpc_id
+
+    ingress {
+      description = "hSenid On-Prem subnet"
+      from_port   = 22
+      to_port     = 22
+      protocol    = "tcp"
+      cidr_blocks = ["192.168.20.0/28"]
+    }
+
+  ingress {
+    description = "hSenid On-Prem subnet"
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["192.168.20.0/28"]
+  }
+
+  ingress {
+    description = "hSenid On-Prem subnet"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["192.168.20.0/28"]
+  }
+
+    ingress {
+      description = "temp_bas"
+      from_port   = 22
+      to_port     = 22
+      protocol    = "tcp"
+      cidr_blocks = ["10.241.80.190/32"]
+    }
+
+  ingress {
+    description     = "ajuba-web-uat-sg"
+    from_port       = 22
+    to_port         = 22
+    protocol        = "tcp"
+    security_groups = ["sg-0dd3cf5f3a101c34c"]
+  }
+
+  ingress {
+    description     = "ajuba-web-uat-sg"
+    from_port       = 3306
+    to_port         = 3306
+    protocol        = "tcp"
+    security_groups = ["sg-0dd3cf5f3a101c34c"]
+  }
+
+  ingress {
+    description     = "ajuba-web-uat-sg"
+    from_port       = 9090
+    to_port         = 9090
+    protocol        = "tcp"
+    security_groups = ["sg-0dd3cf5f3a101c34c"]
+  }
+
+  ingress {
+    description     = "ajuba-web-uat-sg"
+    from_port       = 9100
+    to_port         = 9100
+    protocol        = "tcp"
+    security_groups = ["sg-0dd3cf5f3a101c34c"]
+  }
+
+  ingress {
+    description     = "ajuba-web-uat-sg"
+    from_port       = 9116
+    to_port         = 9116
+    protocol        = "tcp"
+    security_groups = ["sg-0dd3cf5f3a101c34c"]
+  }
+    ingress {
+      description     = "ajuba-app-uat-sg"
+      from_port       = 22
+      to_port         = 22
+      protocol        = "tcp"
+      security_groups = ["sg-0ae8187303f944c0b"]
+    }
+
+  ingress {
+    description     = "ajuba-app-uat-sg"
+    from_port       = 3306
+    to_port         = 3306
+    protocol        = "tcp"
+    security_groups = ["sg-0ae8187303f944c0b"]
+  }
+
+  ingress {
+    description     = "ajuba-app-uat-sg"
+    from_port       = 9090
+    to_port         = 9090
+    protocol        = "tcp"
+    security_groups = ["sg-0ae8187303f944c0b"]
+  }
+
+  ingress {
+    description     = "ajuba-app-uat-sg"
+    from_port       = 9100
+    to_port         = 9100
+    protocol        = "tcp"
+    security_groups = ["sg-0ae8187303f944c0b"]
+  }
+
+  ingress {
+    description     = "ajuba-app-uat-sg"
+    from_port       = 9116
+    to_port         = 9116
+    protocol        = "tcp"
+    security_groups = ["sg-0ae8187303f944c0b"]
+  }
+
+    ingress {
+      description     = "ajuba-db-uat-sg"
+      from_port       = 22
+      to_port         = 22
+      protocol        = "tcp"
+      security_groups = ["sg-05d028b5404bc2fb8"]
+    }
+
+  ingress {
+    description     = "ajuba-db-uat-sg"
+    from_port       = 3306
+    to_port         = 3306
+    protocol        = "tcp"
+    security_groups = ["sg-05d028b5404bc2fb8"]
+  }
+
+  ingress {
+    description     = "ajuba-db-uat-sg"
+    from_port       = 9090
+    to_port         = 9090
+    protocol        = "tcp"
+    security_groups = ["sg-05d028b5404bc2fb8"]
+  }
+
+  ingress {
+    description     = "ajuba-db-uat-sg"
+    from_port       = 9100
+    to_port         = 9100
+    protocol        = "tcp"
+    security_groups = ["sg-05d028b5404bc2fb8"]
+  }
+
+  ingress {
+    description     = "ajuba-db-uat-sg"
+    from_port       = 9116
+    to_port         = 9116
+    protocol        = "tcp"
+    security_groups = ["sg-05d028b5404bc2fb8"]
+  }
+
+    ingress {
+      description = "Self access for ajuba-dashdb-uat-sg"
+      from_port   = 0
+      to_port     = 0
+      protocol    = "-1"
+      self        = true
+    }
+
+    egress {
+      description = "Allow all"
+      from_port   = 0
+      to_port     = 0
+      protocol    = "-1"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    tags = {
+      Name = "ajuba-dashdb-uat-sg"
+    }
+  }
